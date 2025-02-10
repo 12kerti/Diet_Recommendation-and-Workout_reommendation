@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Food Prediction</title>
+  <style>
+body {
+        background-image: url('static/vegetables-background.jpg');
+        background-size: 2000px 1400px;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        }
+
+        h1 {
+          background-color: #0288d1; /* Darker blue for contrast */
+          color: #fff;
+          padding: 15px 30px;
+          border-radius: 8px;
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+          margin-top: 20px;
+        }
+
+        form {
+          margin: 20px 0;
+          background: rgba(255, 255, 255, 0.95); /* Light background for readability */
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+          max-width: 300px;
+          width: 100%;
+        }
+
+        label, input[type="submit"], button {
+            font-size: 16px;
+        }
+
+        label {
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+          background-color: #29b6f6; /* Light blue button */
+          color: white;
+          padding: 10px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          width: 100%;
+        }
+
+        input[type="submit"]:hover {
+          background-color: #0288d1;
+        }
+
+        .checkbox-section {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .checkbox-section label {
+          background-color: #b3e5fc; /* Light blue-gray */
+          padding: 10px 15px;
+          border-radius: 5px;
+          cursor: pointer;
+          margin: 5px;
+        }
+
+        #bmiResult {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+          background-color: rgba(255, 255, 255, 0.85); /* Light background for list items */
+          margin-bottom: 8px;
+          padding: 10px;
+          border-radius: 5px;
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+          padding: 10px 15px;
+          background-color: #4fc3f7; /* Light blue button */
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+          margin-top: 10px;
+        }
+
+        button:hover {
+          background-color: #0288d1; /* Darker blue on hover */
+        }
+
+        .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .usda-button {
+        padding: 12px 20px;
+        background-color: #4fc3f7; /* Same light blue as other buttons */
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+    }
+
+    .usda-button:hover {
+      background-color: #0288d1; /* Darker blue on hover */
+    }
+	</style>
+</head>
+<body>
+	<h1>Food Prediction</h1>
+	<form id="bmiForm" onsubmit="calculateBMI(); return false;">
+        <label for="input_1">Age:</label>
+        <input type="number" id="input_1" name="input_1" placeholder="Age in years"><br>
+
+        <br>
+        
+        <label for="input_2">Height:</label>
+        <input type="number" id="input_2" name="input_2" placeholder="Height in cms"><br>
+
+        <br>
+        
+        <label for="input_3">Weight:</label>
+        <input type="number" id="input_3" name="input_3" placeholder="Weight in kgs"><br>
+
+        <br>
+
+        <input type="submit" value="Calculate BMI">
+    </form>
+
+    <p id="bmiResult"></p>
+    
+    <script>
+      function calculateBMI() {
+          const height = parseFloat(document.getElementById('input_2').value) / 100; // Convert height from cm to meters
+          const weight = parseFloat(document.getElementById('input_3').value);
+
+          if (!height || !weight) {
+              document.getElementById('bmiResult').innerHTML = "Please enter both height and weight.";
+              return;
+          }
+
+          const bmi = weight / (height * height);
+          let category = "";
+
+          if (bmi < 18.5) {
+              category = "Underweight";
+          } else if (bmi >= 18.5 && bmi <= 24.9) {
+              category = "Optimum range";
+          } else if (bmi >= 25 && bmi <= 29.9) {
+              category = "Overweight";
+          } else if (bmi >= 30 && bmi <= 34.9) {
+              category = "Class I obesity";
+          } else if (bmi >= 35 && bmi <= 39.9) {
+              category = "Class II obesity";
+          } else {
+              category = "Class III obesity";
+          }
+
+          document.getElementById('bmiResult').innerHTML = `Your BMI is ${bmi.toFixed(2)} (${category}).`;
+      }
+    </script>
+
+
+
+
+
+
+    <form action="/musclegain" method="POST">
+      <label><input type="checkbox" name="vegetarian" value="vegetarian">Vegetarian</label>
+        <label><input type="checkbox" name="iron" value="iron">Iron</label>
+        <label><input type="checkbox" name="calcium" value="calcium">Calcium</label>
+        <label><input type="checkbox" name="anyfoods" value="anyfoods">Any</label>
+        <input type="submit" value="Muscle gain">
+    </form>
+    
+      {% if musclegainfoods %}
+      <h2>Filtered Foods</h2>
+      <!-- <p>Here are 5 random foods from the "Muscle_Gain" category:</p>  -->
+      <!-- comment the above line -->
+      <ul>
+        {% for item in musclegainfoods.split('\n') %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <form action="/weightgain" method="POST">
+        <label><input type="checkbox" name="vegetarian" value="vegetarian">Vegetarian</label>
+        <label><input type="checkbox" name="iron" value="iron">Iron</label>
+        <label><input type="checkbox" name="calcium" value="calcium">Calcium</label>
+        <label><input type="checkbox" name="anyfoods" value="anyfoods">Any</label>
+        <input type="submit" value="Weight gain">
+    </form>
+    
+      {% if weightgainfoods %}
+      <h2>Filtered Foods</h2>
+      <!-- <p>Here are 5 foods from the "Muscle Gain" category:</p> -->
+            <!-- comment the above line -->
+      <ul>
+        {% for item in weightgainfoods.split('\n') %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <form action="/weightloss" method="POST">
+
+        <label><input type="checkbox" name="vegetarian" value="vegetarian">Vegetarian</label>
+        <label><input type="checkbox" name="iron" value="iron">Iron</label>
+        <label><input type="checkbox" name="calcium" value="calcium">Calcium</label>
+        <label><input type="checkbox" name="anyfoods" value="anyfoods">Any</label>
+        <input type="submit" value="Weight loss">
+    </form>
+    
+      {% if weightlossfoods %}
+      <h2>Filtered Foods</h2>
+      <!-- <p>Here are 5 random foods from the "Muscle_Gain" category:</p> -->
+            <!-- comment the above line -->
+      <ul>
+        {% for item in weightlossfoods.split('\n') %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <div class="button-container">
+        <form method="post" action="{{ url_for('search') }}">
+            <button type="submit" class="usda-button">USDA Food Data</button>
+        </form>
+    </div>
+    
+
+</body>
+</html>
