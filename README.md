@@ -1,4 +1,5 @@
 🥗 Fitness and Diet Plan Recommendation System
+
 This is a machine learning-powered web application that provides personalized fitness and diet recommendations based on user inputs such as age, weight, height, fitness goals, and dietary preferences. The system uses hybrid recommendation models (collaborative filtering + content-based filtering) to suggest ideal food and workout plans for users.
 
 🚀 Features
