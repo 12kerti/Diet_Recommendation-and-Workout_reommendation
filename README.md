@@ -26,13 +26,7 @@ Dietary Preference (Veg, Non-Veg, Vegan)
 ✅ Indian food support included!
 
 🧠 Machine Learning Techniques
-K-Nearest Neighbors (KNN)
-
-Collaborative Filtering
-
-Content-Based Filtering
-
-Hybrid Recommendation Approach
+K-Means Clustering
 
 🛠 Tech Stack
 Frontend: HTML, CSS, JavaScript (with Flask templates)
@@ -40,25 +34,6 @@ Frontend: HTML, CSS, JavaScript (with Flask templates)
 Backend: Python (Flask)
 
 Libraries: Pandas, NumPy, Scikit-learn, Pickle
-
-Deployment (Optional): Heroku / Render / Localhost
-
-📂 Project Structure
-php
-Copy
-Edit
-fitness-diet-recommender/
-│
-├── static/                   # CSS/JS files
-├── templates/                # HTML templates
-├── dataset/                  # Food and fitness CSVs
-├── models/                   # Saved ML models (Pickle files)
-├── app.py                    # Main Flask app
-├── recommender.py            # ML logic for recommendations
-├── requirements.txt          # Python dependencies
-└── README.md                 # Project description
-📝 How to Use
-Clone the repository
 
 
 📊 Sample Inputs
